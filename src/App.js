@@ -1,14 +1,18 @@
 import  React,{useState,useEffect} from 'react';
 import  './App.css';
 import Details  from './Details';
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
-import {Container,Dimmer,Loader,Card,Grid}from'semantic-ui-react';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter, Link,useParams } from "react-router-dom";
+import {Container,Dimmer,Loader,Card,Grid, Item}from'semantic-ui-react';
 import { FaRegThumbsUp } from "react-icons/fa";
 import Navbar from './Navbar.js';
-
+//import { useNavigate } from "react-router-dom";
+//import { Link } from 'react-router-dom';
 function App(){
   const [people ,setPeople] = useState([]);
+  const [planets, setPlanets] = useState([]);
   const [countUp, setCountUp] = useState(0)
+ // const id = 2;
+ // const navigate = useNavigate()
  // const navigate = useNavigate();
   useEffect(()=>{
     async function fetchPeople(){
@@ -21,18 +25,14 @@ function App(){
     
   },[])
   console.log("people",people)
- 
+  
   return (
+  <BrowserRouter>
     <>
-    <BrowserRouter>
-       <Navbar/>
-       <Routes>
-        <Route path="/details" element={<Details/>}/>
-       </Routes>
-    </BrowserRouter>
-    
+        <Navbar/>
      <h1>People</h1>
     <Grid Columns={3}>
+      
       {people.map((data,i)=>{
         return(
         <Grid.Column key={i}>
@@ -40,6 +40,8 @@ function App(){
            <Card.Content >
             <Card.Header>{data.name}</Card.Header>
             <Card.Description>
+              <p><img src='/images/img7.jpg'/></p>
+            <p>{data.height}</p>
               <strong>Height</strong>
               <p>{data.height}</p>
               <strong>Mass</strong>
@@ -50,9 +52,7 @@ function App(){
               <p>{data.gender}</p> 
               <button onClick={()=>setCountUp(countUp + 1)}>
               <FaRegThumbsUp />{`${countUp===0 ?'':countUp}`}</button>
-              <button>
-                  Show more
-              </button>
+               <Link to={`/Details/${i+1}`}>Show more</Link>
               
             </Card.Description>
           </Card.Content>
@@ -62,6 +62,10 @@ function App(){
       })}
     </Grid>
     </> 
+    <Routes>
+         <Route path="/Details/:id/" element={<Details/>}/>
+        </Routes>
+     </BrowserRouter>
   );
 }
 export default App;
