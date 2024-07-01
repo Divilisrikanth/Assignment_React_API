@@ -10,9 +10,14 @@
 .ui.grid>.column:not(.row), .ui.grid>.row>.column {
   position: relative;
   display: inline-block;
-  width: 250px; ;
+  width: 500px; ;
   padding-left: 1rem;
   padding-right: 1rem;
   vertical-align: top;
   margin-left: 1rem;
+  
+}
+.details{
+  
+  width:600px
 }
