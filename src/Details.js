@@ -11,6 +11,16 @@ function Details() {
     async function fetchPersonDetails() {
       let res = await fetch(`https://swapi.dev/api/people/${id}/`);
       let data = await res.json();
+
+      const filmRequests = data.films.map(async (filmUrl) => {
+        let filmRes = await fetch(filmUrl);
+        let filmData = await filmRes.json();
+        return filmData.title;
+      });
+
+      
+      const films = await Promise.all(filmRequests);
+      data.films = films;
       setPersonDetails(data);
     }
     fetchPersonDetails();
@@ -34,7 +44,6 @@ function Details() {
       <p><strong>Skin Color:</strong> {personDetails.skin_color}</p>
       <p><strong>Eye Color:</strong> {personDetails.eye_color}</p>
       <p><strong>Birth Year:</strong> {personDetails.birth_year}</p>
-      <p><strong>Gender:</strong> {personDetails.gender}</p>
       <p><strong>Homeworld:</strong> {personDetails.homeworld}</p>
       <p><strong>Films:</strong> {personDetails.films && personDetails.films.join(', ')}</p>
       <p><strong>Species:</strong> {personDetails.species && personDetails.species.join(', ')}</p>
