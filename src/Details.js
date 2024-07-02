@@ -46,6 +46,7 @@ function Details() {
       <p><strong>Birth Year:</strong> {personDetails.birth_year}</p>
       <p><strong>Homeworld:</strong> {personDetails.homeworld}</p>
       <p><strong>Films:</strong> {personDetails.films && personDetails.films.join(', ')}</p>
+      <p><strong>Films url:</strong> {personDetails.url}</p>
       <p><strong>Species:</strong> {personDetails.species && personDetails.species.join(', ')}</p>
       <p><strong>Vehicles:</strong> {personDetails.vehicles && personDetails.vehicles.join(', ')}</p>
       <p><strong>Starships:</strong> {personDetails.starships && personDetails.starships.join(', ')}</p>
