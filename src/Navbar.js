@@ -1,13 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-export default function Navbar() {
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Navbar = () => {
   return (
     <div>
-      <h1>Details</h1>
+      <h1>Navbar</h1>
       <ul>
-        <Link to="/Details/id/"><li>Details</li></Link>
+        <li><Link to="/">Home</Link></li>
+        {/* Add other navigation links as needed */}
       </ul>
     </div>
-  )
-}
+  );
+};
 
+export default Navbar;
